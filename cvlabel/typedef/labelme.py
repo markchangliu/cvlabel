@@ -1,4 +1,4 @@
-from typing import TypedDict, Union, Optional, Literal, Any, List
+from typing import TypedDict, Union, Optional, Literal, Any, List, Dict
 
 try:
     from typing import TypeAlias
@@ -15,6 +15,10 @@ class LabelmeShapeDict(TypedDict):
     shape_type: Literal["polygon", "rectangle"]
     group_id: Optional[str]
     flags: Dict[Any, Any]
+
+class LabelmeShapeGroupDict(TypedDict):
+    group_id: Union[int, str]
+    shapes: List[LabelmeShapeDict]
 
 class LabelmeDict(TypedDict):
     version: str
