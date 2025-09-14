@@ -5,7 +5,7 @@ try:
 except:
     from typing_extensions import TypeAlias
 
-from cvstruct.typedef.bboxes import BBoxCOCOType
+from cvstruct.typedef.bboxes import BBoxCocoType
 from cvstruct.typedef.polys import PolysCocoType
 from cvstruct.typedef.masks import RLEsType
 
@@ -41,25 +41,52 @@ COCO_TEMPLATE = {
 EmptyListType: TypeAlias = List[int]
 
 
-class COCOImgDict(TypedDict):
+class CocoImgDictType(TypedDict):
+    """
+    `CocoImgDictType`, `dict`
+        `height`: `int`
+        `width`: `int`
+        `id`: `int`
+        `file_name`: `str`
+    """
     height: int
     width: int
     id: int
     file_name: str
 
-class COCOCatDict(TypedDict):
+class CocoCatDictType(TypedDict):
+    """
+    `CocoCatDictType`, `dict`
+        `id`: `int`
+        `name`: `str`
+    """
     id: int
     name: str
 
-class COCOAnnDict(TypedDict):
+class CocoAnnDictType(TypedDict):
+    """
+    `CocoAnnDictType`, `dict`
+        `id`: `int`
+        `iscrowd`: `Literal[0, 1]`
+        `image_id`: `int`
+        `area`: `int`,
+        `bbox`: `BBoxCocoType`,
+        `segmentation`: `Union[PolysCocoType, RLEsType, EmptyListType]`
+    """
     id: int
     iscrowd: Literal[0, 1]
     image_id: int
     area: int
-    bbox: BBoxCOCOType
+    bbox: BBoxCocoType
     segmentation: Union[PolysCocoType, RLEsType, EmptyListType]
 
-class COCODict(TypedDict):
-    images: List[COCOImgDict]
-    categories: List[COCOCatDict]
-    annotations: List[COCOAnnDict]
+class CocoDictType(TypedDict):
+    """
+    `CocoDictType`, `dict`
+        `images`: `List[CocoImgDict]`
+        `categories`: `List[CocoCatDict]`
+        `annotations`: `List[CocoAnnDict]`
+    """
+    images: List[CocoImgDict]
+    categories: List[CocoCatDict]
+    annotations: List[CocoAnnDict]

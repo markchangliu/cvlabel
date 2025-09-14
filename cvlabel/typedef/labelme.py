@@ -9,18 +9,41 @@ from cvstruct.typedef.bboxes import BBoxLabelmeType
 from cvstruct.typedef.polys import PolyLabelmeType
 
 
-class LabelmeShapeDict(TypedDict):
+class LabelmeShapeDictType(TypedDict):
+    """
+    `LabelmeShapeDictType`, `dict`
+        `points`: `Union[PolyLabelmeType, BBoxLabelmeType]`
+        `label`: `str`
+        `shape_type`: `Literal["polygon", "rectangle"]`
+        `group_id`: `Optional[str]`
+        `flags`: `Dict[Any, Any]`
+    """
     points: Union[PolyLabelmeType, BBoxLabelmeType]
     label: str
     shape_type: Literal["polygon", "rectangle"]
     group_id: Optional[str]
     flags: Dict[Any, Any]
 
-class LabelmeShapeGroupDict(TypedDict):
+class LabelmeShapeGroupDictType(TypedDict):
+    """
+    `LabelmeShapeGroupDictType`, `dict`
+        `group_id`: `Union[int, str]`
+        `shapes`: `List[LabelmeShapeDict]`
+    """
     group_id: Union[int, str]
     shapes: List[LabelmeShapeDict]
 
-class LabelmeDict(TypedDict):
+class LabelmeDictType(TypedDict):
+    """
+    `LabelmeDictType`, `dict`
+        `version`: `str`
+        `flags`: `Dict[Any, Any]`
+        `shapes`: `List[LabelmeShapeDict]`
+        `imagePath`: `str`
+        `imageData`: `Optional[str]`
+        `imageHeight`: int
+        `imageWidth`: `int`
+    """
     version: str
     flags: Dict[Any, Any]
     shapes: List[LabelmeShapeDict]
