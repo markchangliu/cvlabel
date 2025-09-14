@@ -14,11 +14,11 @@ import cvlabel.convert.labelme2coco.utils as utils
 
 def labelme2coco_sub_img(
     img_p: Union[str, os.PathLike],
-    labelme_dict: labelme_type.LabelmeDict,
+    labelme_dict: labelme_type.LabelmeDictType,
     img_id: int,
     abs_img_p_flag: bool,
     img_p_prefix: Union[str, os.PathLike],
-) -> coco_type.COCOImgDict:
+) -> coco_type.CocoImgDictType:
     # Add img to img_list
     img_h = labelme_dict["imageHeight"]
     img_w = labelme_dict["imageWidth"]
@@ -41,11 +41,11 @@ def labelme2coco_sub_img(
 
 def labelme2coco_sub_img_copy(
     img_p: Union[str, os.PathLike],
-    labelme_dict: labelme_type.LabelmeDict,
+    labelme_dict: labelme_type.LabelmeDictType,
     img_id: int,
     export_img_dir: Union[str, os.PathLike],
     abs_img_p_flag: bool,
-) -> coco_type.COCOImgDict:
+) -> coco_type.CocoImgDictType:
     # Add img to img_list
     img_h = labelme_dict["imageHeight"]
     img_w = labelme_dict["imageWidth"]
@@ -69,11 +69,11 @@ def labelme2coco_sub_img_copy(
     return coco_img
 
 def labelme2coco_sub_ann_rle(
-    labelme_dict: labelme_type.LabelmeDict,
+    labelme_dict: labelme_type.LabelmeDictType,
     start_ann_id: int,
     cat_name_id_dict: Dict[str, int],
     img_id: int
-) -> Tuple[coco_type.COCOAnnDict, int]:
+) -> Tuple[coco_type.CocoAnnDictType, int]:
     img_h = labelme_dict["imageHeight"]
     img_w = labelme_dict["imageWidth"]
     img_hw = (img_h, img_w)
@@ -111,7 +111,7 @@ def labelme2coco_sub_ann_rle(
 
 def labelme2coco_sub_cat(
     cat_name_id_dict: Dict[str, int]
-) -> List[coco_type.COCOCatDict]:
+) -> List[coco_type.CocoCatDictType]:
     coco_cat_list = []
 
     for cat_name, cat_id in cat_name_id_dict.items():

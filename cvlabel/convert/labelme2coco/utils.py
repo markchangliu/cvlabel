@@ -2,6 +2,8 @@ import os
 from pathlib import Path
 from typing import Union, Generator, Dict, Tuple, Any
 
+import pycocotools.mask as pycocomask
+
 import cvlabel.typedef.labelme as labelme_type
 from cvstruct.polys.convert import poly_labelme_to_rle
 
@@ -31,9 +33,9 @@ def img_labelme_p_generator(
 
 def get_shapes_by_group_id(
     labelme_dict: Dict[str, Any]
-) -> labelme_type.LabelmeShapeGroupDict:
+) -> labelme_type.LabelmeShapeGroupDictType:
     # Ann buffer to process shapes with same group_id
-    shape_group: labelme_type.LabelmeShapeGroupDict = {}
+    shape_group: labelme_type.LabelmeShapeGroupDictType = {}
     group_id_single = 0
 
     # Put shapes with the same group_id into one list
@@ -54,9 +56,9 @@ def get_shapes_by_group_id(
     return shape_group
 
 def merge_shapes_within_group(
-    shape_group: labelme_type.LabelmeShapeGroupDict,
+    shape_group: labelme_type.LabelmeShapeGroupDictType,
     img_hw: Tuple[int, int]
-) -> labelme_type.LabelmeShapeDict:
+) -> labelme_type.LabelmeShapeDictType:
     shape_group_merged = {}
 
     # Merge shapes with the same group_id
