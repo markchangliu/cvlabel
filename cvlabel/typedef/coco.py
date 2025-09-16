@@ -7,7 +7,7 @@ except:
 
 from cvstruct.typedef.bboxes import BBoxCocoType
 from cvstruct.typedef.polys import PolysCocoType
-from cvstruct.typedef.masks import RLEsType
+from cvstruct.typedef.rles import RLEsType, RLEType
 
 
 COCO_IMG_TEMPLATE = {
@@ -78,7 +78,7 @@ class CocoAnnDictType(TypedDict):
     image_id: int
     area: int
     bbox: BBoxCocoType
-    segmentation: Union[PolysCocoType, RLEsType, EmptyListType]
+    segmentation: Union[PolysCocoType, RLEsType, RLEType, EmptyListType]
 
 class CocoDictType(TypedDict):
     """

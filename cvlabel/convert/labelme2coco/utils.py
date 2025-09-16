@@ -5,7 +5,7 @@ from typing import Union, Generator, Dict, Tuple, Any
 import pycocotools.mask as pycocomask
 
 import cvlabel.typedef.labelme as labelme_type
-from cvstruct.polys.convert import poly_labelme_to_rle
+from cvstruct.convert.poly2rle import poly2rle_labelme
 
 
 def img_labelme_p_generator(
@@ -72,7 +72,7 @@ def merge_shapes_within_group(
                 # 2 points polygon is problematic
                 continue
 
-            rle = poly_labelme_to_rle(poly, img_hw)
+            rle = poly2rle_labelme(poly, img_hw)
         else:
             # Occluded instance, 
             # 1 bbox + multiple polys, or multiple polys
@@ -87,7 +87,7 @@ def merge_shapes_within_group(
                 if len(poly) < 3:
                     continue
 
-                rle = poly_labelme_to_rle(poly, img_hw)
+                rle = poly2rle_labelme(poly, img_hw)
                 rles.append(rle)
             
             if len(rle) == 0:

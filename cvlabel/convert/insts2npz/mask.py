@@ -3,11 +3,11 @@ from typing import Union
 
 import numpy as np
 
-from cvstruct.typedef.insts import Insts
+from cvstruct.typedef.insts import InstsType
 
 
 def insts2npz_mask(
-    insts: Insts,
+    insts: InstsType,
     export_npz_p: Union[os.PathLike, str],
 ) -> None:
     bboxes = insts.bboxes

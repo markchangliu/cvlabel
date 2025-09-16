@@ -28,17 +28,17 @@ class LabelmeShapeGroupDictType(TypedDict):
     """
     `LabelmeShapeGroupDictType`, `dict`
         `group_id`: `Union[int, str]`
-        `shapes`: `List[LabelmeShapeDict]`
+        `shapes`: `List[LabelmeShapeDictType]`
     """
     group_id: Union[int, str]
-    shapes: List[LabelmeShapeDict]
+    shapes: List[LabelmeShapeDictType]
 
 class LabelmeDictType(TypedDict):
     """
     `LabelmeDictType`, `dict`
         `version`: `str`
         `flags`: `Dict[Any, Any]`
-        `shapes`: `List[LabelmeShapeDict]`
+        `shapes`: `List[LabelmeShapeDictType]`
         `imagePath`: `str`
         `imageData`: `Optional[str]`
         `imageHeight`: int
@@ -46,7 +46,7 @@ class LabelmeDictType(TypedDict):
     """
     version: str
     flags: Dict[Any, Any]
-    shapes: List[LabelmeShapeDict]
+    shapes: List[LabelmeShapeDictType]
     imagePath: str
     imageData: Optional[str]
     imageHeight: int

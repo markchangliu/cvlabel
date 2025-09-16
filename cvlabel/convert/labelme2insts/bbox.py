@@ -5,13 +5,13 @@ from typing import Dict, Union
 import numpy as np
 import pycocotools.mask as pycocomask
 
-from cvstruct.typedef.insts import Insts
+from cvstruct.typedef.insts import InstsType
 
 
 def labelme2insts_bbox(
     labelme_p: Union[os.PathLike, str],
     cat_name_id_dict: Dict[str, int],
-) -> Insts:
+) -> InstsType:
     with open(labelme_p, "r") as f:
         labelme_dict = json.load(f)
     
@@ -36,6 +36,6 @@ def labelme2insts_bbox(
     scores = np.ones_like(cat_ids, dtype=np.float32)
     bboxes = np.asarray(bboxes, dtype=np.int32)
 
-    insts = Insts(scores, cat_ids, bboxes, None)
+    insts = InstsType(scores, cat_ids, bboxes, None)
     
     return insts
