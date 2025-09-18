@@ -7,6 +7,8 @@ except:
 
 from cvstruct.typedef.bboxes import BBoxLabelmeType
 from cvstruct.typedef.polys import PolyLabelmeType
+from cvstruct.typedef.rles import RLEType
+from cvstruct.typedef.contours import ContourType
 
 
 class LabelmeShapeDictType(TypedDict):
@@ -23,15 +25,6 @@ class LabelmeShapeDictType(TypedDict):
     shape_type: Literal["polygon", "rectangle"]
     group_id: Optional[str]
     flags: Dict[Any, Any]
-
-class LabelmeShapeGroupDictType(TypedDict):
-    """
-    `LabelmeShapeGroupDictType`, `dict`
-        `group_id`: `Union[int, str]`
-        `shapes`: `List[LabelmeShapeDictType]`
-    """
-    group_id: Union[int, str]
-    shapes: List[LabelmeShapeDictType]
 
 class LabelmeDictType(TypedDict):
     """
@@ -51,3 +44,11 @@ class LabelmeDictType(TypedDict):
     imageData: Optional[str]
     imageHeight: int
     imageWidth: int
+
+LabelmeShapeGroupsType: TypeAlias = Dict[Union[str, int], List[LabelmeShapeDictType]]
+"""
+`LabelmeShapeGroupsType`
+    `Dict[Union[str, int], List[LabelmeShapeDictType]]`, 
+    `{group_id: labelme_shape_dict_list}`,
+    `(num_groups, )`
+"""

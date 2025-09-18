@@ -10,7 +10,7 @@ import pycocotools.mask as pycocomask
 
 import cvlabel.typedef.labelme as labelme_type
 import cvlabel.convert.labelme2coco.subs as subs
-import cvlabel.convert.labelme2coco.utils as utils
+import cvlabel.utils.labelme as labelme_utils
 
 
 def labelme2coco_rle_copy_img(
@@ -42,7 +42,7 @@ def labelme2coco_rle_copy_img(
     coco_ann_list = []
 
     for img_dir, labelme_dir in zip(img_dirs, labelme_dirs):
-        p_generator = utils.img_labelme_p_generator(img_dir, labelme_dir)
+        p_generator = labelme_utils.img_labelme_p_generator(img_dir, labelme_dir)
 
         for img_p, labelme_p in p_generator:
             with open(labelme_p, "r") as f:
@@ -98,7 +98,7 @@ def labelme2coco_rle(
     coco_ann_list = []
 
     for img_dir, labelme_dir in zip(img_dirs, labelme_dirs):
-        p_generator = utils.img_labelme_p_generator(img_dir, labelme_dir)
+        p_generator = labelme_utils.img_labelme_p_generator(img_dir, labelme_dir)
 
         for img_p, labelme_p in p_generator:
             with open(labelme_p, "r") as f:

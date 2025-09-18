@@ -9,7 +9,7 @@ import pycocotools.mask as pycocomask
 
 import cvlabel.typedef.coco as coco_type
 import cvlabel.typedef.labelme as labelme_type
-import cvlabel.convert.labelme2coco.utils as utils
+import cvlabel.utils.labelme as utils
 
 
 def labelme2coco_sub_img(

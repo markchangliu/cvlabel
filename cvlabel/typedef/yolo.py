@@ -1,10 +1,8 @@
+from typing import Union, List, Tuple
 try:
     from typing import TypeAlias
 except:
     from typing_extensions import TypeAlias
-
-from cvstruct.typedef.polys import PolyYoloType
-from cvstruct.typedef.bboxes import BBoxYoloType
 
 
 YoloBBoxLabelType: TypeAlias = Tuple[int, float, float, float, float]
@@ -14,9 +12,16 @@ YoloBBoxLabelType: TypeAlias = Tuple[int, float, float, float, float]
     `[cat_id, x_ctr_norm, y_ctr_norm, w_norm, y_norm]`
 """
 
-YoloPolyLabelType: TypeAlias = Tuple[int, float, ...]
+YoloPolyLabelType: TypeAlias = List[float]
 """
 `YoloPolyLabelType`
     `Tuple[int, float, ...]`, `(1 + num_points * 2, )`, 
     `[cat_id, x1_norm, y1_norm, x2_norm, y2_norm, ...]`
+"""
+
+YoloPolyLabelsType: TypeAlias = List[YoloPolyLabelType]
+"""
+`YoloPolyLabelsType`
+    `List[YoloPolyLabelType]`, `(num_labels, (1 + num_points * 2, ))`, 
+    `[[cat_id, x1_norm, y1_norm, x2_norm, y2_norm, ...], ...]`
 """
