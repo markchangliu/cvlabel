@@ -67,12 +67,15 @@ def shapes_to_yolo_bbox(
         if shape["shape_type"] != "rectangle":
             continue
 
-        points = np.asarray(shape["points"]).flatten()
+        points = np.asarray(shape["points"]).flatten().tolist()
 
         if len(points) != 4:
             print("Abnormal bbox, num_points != 4")
         
-        x1, y1, x2, y2 = points
+        x1 = min(points[0], points[2])
+        y1 = min(points[1], points[3])
+        x2 = max(points[0], points[2])
+        y2 = max(points[1], points[3])
         x_ctr_norm = (x1 + x2) / 2 / img_hw[1]
         y_ctr_norm = (y1 + y2) / 2 / img_hw[0]
         w_norm = (x2 - x1) / img_hw[1]
