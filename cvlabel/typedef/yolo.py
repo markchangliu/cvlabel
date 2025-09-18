@@ -12,6 +12,13 @@ YoloBBoxLabelType: TypeAlias = Tuple[int, float, float, float, float]
     `[cat_id, x_ctr_norm, y_ctr_norm, w_norm, y_norm]`
 """
 
+YoloBBoxLabelsType: TypeAlias = List[YoloBBoxLabelType]
+"""
+`YoloBBoxLabelType`
+    `List[YoloBBoxLabelType]`, `(num_labels, (5, ))`, 
+    `[[cat_id, x_ctr_norm, y_ctr_norm, w_norm, y_norm], ...]`
+"""
+
 YoloPolyLabelType: TypeAlias = List[float]
 """
 `YoloPolyLabelType`

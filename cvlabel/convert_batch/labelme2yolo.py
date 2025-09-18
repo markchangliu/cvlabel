@@ -1,22 +1,25 @@
 import os
 from pathlib import Path
-from typing import List, Union, Dict
+from typing import List, Union, Dict, Literal
 
 import cvlabel.utils.labelme as labelme_utils
 import cvlabel.typedef.labelme as labelme_type
 import cvlabel.convert_file.labelme2yolo as cvt_file
 
 
-def labelme2yolo_poly_batch(
+def labelme2yolo_batch(
     img_dirs: List[Union[str, os.PathLike]],
     labelme_dirs: List[Union[str, os.PathLike]],
     export_root: Union[str, os.PathLike],
     export_foldername: str,
-    cat_name_id_dict: Dict[str, int]
+    cat_name_id_dict: Dict[str, int],
+    shape_type: Literal["bbox", "poly"]
 ) -> None:
     assert isinstance(img_dirs, list)
     assert isinstance(labelme_dirs, list)
     assert len(img_dirs) == len(labelme_dirs)
+
+    assert shape_type in ["bbox", "poly"]
 
     export_img_dir = os.path.join(export_root, "images", export_foldername)
     export_label_dir = os.path.join(export_root, "labels", export_foldername)
@@ -41,7 +44,7 @@ def labelme2yolo_poly_batch(
 
             cvt_file.labelme2yolo_file(
                 img_p, labelme_p, export_img_p, export_label_p, 
-                cat_name_id_dict
+                cat_name_id_dict, shape_type
             )
 
             curr_img_id += 1

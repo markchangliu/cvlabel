@@ -1,5 +1,7 @@
 from typing import List, Dict, Tuple
 
+import numpy as np
+
 import cvlabel.typedef.labelme as labelme_type
 import cvlabel.typedef.yolo as yolo_type
 import cvstruct.merge.cnts as cnt_merge
@@ -51,5 +53,34 @@ def shape_groups_to_yolo_poly(
 
         yolo_label = [cat_id] + poly_yolo
         yolo_labels.append(yolo_label)
+
+    return yolo_labels
+
+def shapes_to_yolo_bbox(
+    shapes: List[labelme_type.LabelmeShapeDictType],
+    cat_name_id_dict: Dict[str, int],
+    img_hw: Tuple[int, int]
+) -> yolo_type.YoloBBoxLabelsType:
+    yolo_labels = []
+
+    for shape in shapes:
+        if shape["shape_type"] != "rectangle":
+            continue
+
+        points = np.asarray(shape["points"]).flatten()
+
+        if len(points) != 4:
+            print("Abnormal bbox, num_points != 4")
+        
+        x1, y1, x2, y2 = points
+        x_ctr_norm = (x1 + x2) / 2 / img_hw[1]
+        y_ctr_norm = (y1 + y2) / 2 / img_hw[0]
+        w_norm = (x2 - x1) / img_hw[1]
+        h_norm = (y2 - y1) / img_hw[0]
+
+        cat_id = cat_name_id_dict[shape["label"]]
+
+        yolo_bbox = [cat_id, x_ctr_norm, y_ctr_norm, w_norm, h_norm]
+        yolo_labels.append(yolo_bbox)
 
     return yolo_labels
