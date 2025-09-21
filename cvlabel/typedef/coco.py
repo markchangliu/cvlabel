@@ -87,6 +87,6 @@ class CocoDictType(TypedDict):
         `categories`: `List[CocoCatDict]`
         `annotations`: `List[CocoAnnDict]`
     """
-    images: List[CocoImgDict]
-    categories: List[CocoCatDict]
-    annotations: List[CocoAnnDict]
+    images: List[CocoImgDictType]
+    categories: List[CocoCatDictType]
+    annotations: List[CocoAnnDictType]

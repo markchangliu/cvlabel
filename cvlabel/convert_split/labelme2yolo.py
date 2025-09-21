@@ -4,7 +4,7 @@ from typing import Union, List, Dict, Literal
 import cvlabel.convert_batch.labelme2yolo as cvt_batch
 
 
-def labelme2coco_split(
+def labelme2yolo_split(
     img_dirs: Union[str, os.PathLike],
     labelme_dirs: Union[str, os.PathLike],
     export_root: Union[str, os.PathLike],
@@ -35,12 +35,31 @@ def labelme2coco_split(
             include_flags = []
             
             for kw in kws:
-                if kw not in img_dir:
-                    include_flags.append(False)
-                    break
+                include_flag = False
+
+                if "!" in kw:
+                    tokens_exclude = kw.split("!")
+                    tokens_exclude = [t.strip() for t in tokens_exclude if len(t) > 0]
                 else:
-                    include_flags.append(True)
-                    continue
+                    tokens_exclude = []
+
+                if "|" in kw:
+                    tokens = kw.split("|")
+                    tokens = [t.strip() for t in tokens if len(t) > 0]
+                else:
+                    tokens = [kw]
+
+                for token in tokens:
+                    if token in img_dir:
+                        include_flag = True
+                        break
+                
+                for token in tokens_exclude:
+                    if token in img_dir:
+                        include_flag = False
+                        break
+                
+                include_flags.append(include_flag)
             
             if not all(include_flags):
                 continue
