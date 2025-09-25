@@ -4,7 +4,7 @@ from typing import List, Union, Dict, Literal
 
 import cvlabel.utils.labelme as labelme_utils
 import cvlabel.typedef.labelme as labelme_type
-import cvlabel.convert_file.labelme2yolo as cvt_file
+import cvlabel.convert.file.labelme2yolo as cvt_file
 
 
 def labelme2yolo_batch(

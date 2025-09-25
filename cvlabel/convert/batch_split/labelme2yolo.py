@@ -1,7 +1,7 @@
 import os
 from typing import Union, List, Dict, Literal
 
-import cvlabel.convert_batch.labelme2yolo as cvt_batch
+import cvlabel.convert.batch.labelme2yolo as cvt_batch
 
 
 def labelme2yolo_split(

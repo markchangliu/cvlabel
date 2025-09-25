@@ -3,7 +3,7 @@ import os
 import shutil
 from typing import Union, Dict, Literal
 
-import cvlabel.convert_shape.labelme2yolo as cvt_shape
+import cvlabel.convert.shape.labelme2yolo as cvt_shape
 import cvlabel.utils.labelme as labelme_utils
 import cvlabel.typedef.labelme as labelme_type
 
