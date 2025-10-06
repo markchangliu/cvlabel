@@ -30,7 +30,7 @@ class LabelmeDictType(TypedDict):
     """
     `LabelmeDictType`, `dict`
         `version`: `str`
-        `flags`: `Dict[Any, Any]`
+        `flags`: `Dict[str, bool]`
         `shapes`: `List[LabelmeShapeDictType]`
         `imagePath`: `str`
         `imageData`: `Optional[str]`
@@ -38,7 +38,7 @@ class LabelmeDictType(TypedDict):
         `imageWidth`: `int`
     """
     version: str
-    flags: Dict[Any, Any]
+    flags: Dict[str, bool]
     shapes: List[LabelmeShapeDictType]
     imagePath: str
     imageData: Optional[str]
