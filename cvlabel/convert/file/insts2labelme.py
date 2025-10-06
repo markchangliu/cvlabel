@@ -12,6 +12,7 @@ from cvstruct.convert.mask2poly import mask2poly_labelme
 
 def insts2labelme(
     insts: Insts,
+    img_name: str,
     img_hw: Tuple[int, int],
     export_labelme_p: Union[str, os.PathLike],
     cat_id_name_dict: Dict[int, str],
@@ -21,6 +22,7 @@ def insts2labelme(
 
     labelme_dict: LabelmeDictType = {}
     labelme_dict["flags"] = {}
+    labelme_dict["imagePath"] = img_name
     labelme_dict["imageData"] = None
     labelme_dict["imageHeight"] = img_hw[0]
     labelme_dict["imageWidth"] = img_hw[1]
